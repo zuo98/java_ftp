@@ -1,4 +1,9 @@
 
+ftp:
+  url: 114.215.145.37
+  port: 21
+  username: zuoliping
+  password: zuoliping
 
 spring:
   datasource:
