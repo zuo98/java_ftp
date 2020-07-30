@@ -1,13 +1,12 @@
 package org.zuo.ftpapi.service.ftpService;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import org.zuo.ftpapi.contract.ftpContract.FtpRecordDescriptor;
 import org.zuo.ftpapi.contract.ftpContract.IFtpHandler;
 import org.zuo.ftpapi.contract.ftpContract.IFtpRecordService;
 import org.zuo.ftpapi.dao.ftpRecord.FtpRecordDao;
 import org.zuo.ftpapi.dao.ftpRecord.FtpRecordEntity;
-import org.zuo.ftpapi.service.SimpleCatalogService;
+import org.zuo.ftpapi.service.catalog.SimpleCatalogService;
 
 @Service
 public class SimpleFtpRecordService extends SimpleCatalogService<FtpRecordDescriptor, FtpRecordEntity>

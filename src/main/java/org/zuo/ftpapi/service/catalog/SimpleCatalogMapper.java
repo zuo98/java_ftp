@@ -1,4 +1,4 @@
-package org.zuo.ftpapi.service;
+package org.zuo.ftpapi.service.catalog;
 
 import org.zuo.ftpapi.contract.Catalog;
 import org.zuo.ftpapi.dao.config.AbstractEntity;

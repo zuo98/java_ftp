@@ -17,7 +17,7 @@ public class WebSocket {
     private Session session;
 
     private static CopyOnWriteArraySet<WebSocket> webSockets = new CopyOnWriteArraySet<>();
-    private String msg = "0";
+    private String msg = "connect success";
 
 
     @OnOpen
