@@ -1,7 +1,7 @@
-package org.zuo.ftpapi.service.catalog;
+package org.zuo.ftpapi.service.catalogService;
 
-import org.zuo.ftpapi.contract.Catalog;
-import org.zuo.ftpapi.contract.ICatalogService;
+import org.zuo.ftpapi.contract.catalogContract.Catalog;
+import org.zuo.ftpapi.contract.catalogContract.ICatalogService;
 import org.zuo.ftpapi.dao.config.AbstractEntity;
 import org.zuo.ftpapi.dao.config.BaseDao;
 

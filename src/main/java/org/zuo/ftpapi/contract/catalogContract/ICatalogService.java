@@ -1,4 +1,5 @@
-package org.zuo.ftpapi.contract;
+package org.zuo.ftpapi.contract.catalogContract;
+
 
 public interface ICatalogService<T extends Catalog> {
 

@@ -1,6 +1,6 @@
-package org.zuo.ftpapi.service.catalog;
+package org.zuo.ftpapi.service.catalogService;
 
-import org.zuo.ftpapi.contract.Catalog;
+import org.zuo.ftpapi.contract.catalogContract.Catalog;
 import org.zuo.ftpapi.dao.config.AbstractEntity;
 
 import java.util.ArrayList;

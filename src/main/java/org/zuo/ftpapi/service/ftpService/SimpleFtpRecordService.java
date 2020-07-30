@@ -6,7 +6,7 @@ import org.zuo.ftpapi.contract.ftpContract.IFtpHandler;
 import org.zuo.ftpapi.contract.ftpContract.IFtpRecordService;
 import org.zuo.ftpapi.dao.ftpRecord.FtpRecordDao;
 import org.zuo.ftpapi.dao.ftpRecord.FtpRecordEntity;
-import org.zuo.ftpapi.service.catalog.SimpleCatalogService;
+import org.zuo.ftpapi.service.catalogService.SimpleCatalogService;
 
 @Service
 public class SimpleFtpRecordService extends SimpleCatalogService<FtpRecordDescriptor, FtpRecordEntity>

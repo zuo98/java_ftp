@@ -1,4 +1,4 @@
-package org.zuo.ftpapi.contract;
+package org.zuo.ftpapi.contract.catalogContract;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
