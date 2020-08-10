@@ -15,5 +15,6 @@ spring:
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
-      ddl-auto: update
-
+      ddl-auto: create
+server:
+  port: 8081

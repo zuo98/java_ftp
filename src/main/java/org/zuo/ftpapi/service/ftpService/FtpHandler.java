@@ -36,8 +36,6 @@ public class FtpHandler implements IFtpHandler {
                 this.client.disconnect();
             }
             this.client.setFileType(FTPClient.BINARY_FILE_TYPE);
-
-
             this.client.setCopyStreamListener(this.getListener(file.getSize()));
             return this.client.storeFile(fileName, file.getInputStream());
         } catch (Throwable e) {
@@ -52,7 +50,6 @@ public class FtpHandler implements IFtpHandler {
     public boolean download(String fileName, OutputStream out) {
         try {
             this.client.connect();
-//            this.client.enterLocalPassiveMode();
             this.client.setFileType(FTPClient.BINARY_FILE_TYPE);
             this.client.enterLocalPassiveMode();
             FTPFile[] files = this.client.listFiles(fileName);

@@ -20,12 +20,16 @@ public class FtpRecordEntity extends AbstractEntity {
     @Column(name = "fileName", length = 64, nullable = false)
     private String fileName;
 
-    @Column(name = "filePath", length = 64, nullable = false)
-    private String filePath;
+    @Column(name = "storeFileName", length = 64, nullable = false)
+    private String storeFileName;
+
+    @Column(name = "description", length = 64, nullable = false)
+    private String description;
+
+    @Column(name = "downloadCount", nullable = false)
+    private int downloadCount;
 
     @Column(name = "createTime", length = 64, nullable = false)
     private Date createTime;
 
-    @Column(name = "updateTime", length = 64, nullable = false)
-    private Date updateTime;
 }

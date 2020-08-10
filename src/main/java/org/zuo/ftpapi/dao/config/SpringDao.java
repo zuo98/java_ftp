@@ -24,4 +24,8 @@ public abstract class SpringDao<E extends AbstractEntity> implements BaseDao<E> 
         return this.repository.findById(id).get();
     }
 
+    @Override
+    public void delete(String id) {
+        this.repository.deleteById(id);
+    }
 }

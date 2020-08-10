@@ -10,7 +10,9 @@ public class FtpRecordDescriptor extends Catalog {
 
     private String dataId;
     private String fileName;
-    private String filePath;
+    private String storeFileName;
+    private String description;
+    private int downloadCount;
     private Date createTime;
-    private Date updateTime;
+    
 }

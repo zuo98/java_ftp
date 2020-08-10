@@ -6,4 +6,6 @@ public interface BaseDao<E extends AbstractEntity> {
     Iterable<E> save(Iterable<E> entities);
 
     E findOne(String id);
+
+    void delete(String id);
 }
