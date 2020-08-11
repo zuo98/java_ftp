@@ -8,11 +8,11 @@ import java.util.Date;
 @Data
 public class FtpRecordDescriptor extends Catalog {
 
-    private String dataId;
+    private String id;
     private String fileName;
     private String storeFileName;
     private String description;
-    private int downloadCount;
+    private Integer downloadCount;
     private Date createTime;
-    
+
 }

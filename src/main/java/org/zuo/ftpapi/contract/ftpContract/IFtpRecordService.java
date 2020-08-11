@@ -13,7 +13,7 @@ public interface IFtpRecordService {
 
     boolean upload(MultipartFile file, String description) throws Throwable;
 
-    List<FtpRecordDescriptor> getAllRecord() throws Throwable;
+    List<FtpRecordDescriptor> list() throws Throwable;
 
 
 }

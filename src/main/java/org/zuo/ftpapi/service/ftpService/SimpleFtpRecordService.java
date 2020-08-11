@@ -13,6 +13,8 @@ import org.zuo.ftpapi.service.catalogService.SimpleCatalogService;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -33,9 +35,9 @@ public class SimpleFtpRecordService extends SimpleCatalogService<FtpRecordDescri
     }
 
     @Override
-    public List<FtpRecordDescriptor> getAllRecord() throws Throwable {
-        List<FtpRecordDescriptor> descs = null;
-        List<FtpRecordEntity> entities = this.dao.findAll();
+    public List<FtpRecordDescriptor> list() throws Throwable {
+        List<FtpRecordDescriptor> descs = new ArrayList<>();
+        Iterable<FtpRecordEntity> entities = this.dao.findAll();
         for (FtpRecordEntity entity : entities) {
             descs.add(this.mapper.eTot(entity));
         }
@@ -46,37 +48,42 @@ public class SimpleFtpRecordService extends SimpleCatalogService<FtpRecordDescri
     @Override
     public boolean upload(MultipartFile file, String description) throws Throwable {
         String fileName = file.getOriginalFilename();
-        String dataId = UUID.randomUUID().toString();
+        String Id = UUID.randomUUID().toString();
         String suffix = fileName.substring(fileName.lastIndexOf("."));
-        String newFileName = dataId + suffix;
-        this.ftpHandler.upload(file, newFileName);
-
-        Date date = new Date();
-        FtpRecordDescriptor desc = new FtpRecordDescriptor();
-        desc.setFileName(fileName);
-        desc.setDescription(description);
-        desc.setCreateTime(date);
-        desc.setDataId(dataId);
-        desc.setStoreFileName(newFileName);
-        desc.setDownloadCount(0);
-        this.dao.save(this.mapper.tToe(desc));
-        return true;
+        String newFileName = Id + suffix;
+        if (this.ftpHandler.upload(file, newFileName)) {
+            Date date = new Date();
+            FtpRecordDescriptor desc = new FtpRecordDescriptor();
+            desc.setFileName(fileName);
+            desc.setDescription(description);
+            desc.setCreateTime(date);
+            desc.setId(Id);
+            desc.setStoreFileName(newFileName);
+            desc.setDownloadCount(0);
+            this.dao.save(this.mapper.tToe(desc));
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public boolean download(HttpServletResponse response, String dataId) {
-        FtpRecordEntity entity = this.dao.findByDataId(dataId);
+    public boolean download(HttpServletResponse response, String id) {
+        FtpRecordEntity entity = this.dao.findById(id);
         String fileName = entity.getFileName();
         String storeFileName = entity.getStoreFileName();
-        try{
+        try {
+            fileName = URLEncoder.encode(fileName,"utf-8");
             response.setContentType("application/octet-stream");
             response.setCharacterEncoding("utf-8");
-            response.setHeader("Content-Disposition","attachment; filename="+fileName);
+            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
             OutputStream output = response.getOutputStream();
-            this.ftpHandler.download(storeFileName, output);
 
-            entity.setDownloadCount(entity.getDownloadCount()+1);
-        }catch (IOException e){
+            if (this.ftpHandler.download(storeFileName, output)) {
+                entity.setDownloadCount(entity.getDownloadCount() + 1);
+                this.dao.save(entity);
+            }
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -85,13 +92,14 @@ public class SimpleFtpRecordService extends SimpleCatalogService<FtpRecordDescri
     }
 
     @Override
-    public boolean delete(String dataId) {
+    public boolean delete(String id) {
 
-        FtpRecordEntity entity = this.dao.findByDataId(dataId);
+        FtpRecordEntity entity = this.dao.findById(id);
         if (entity != null) {
-            String fileName = entity.getFileName();
-            this.ftpHandler.delete(fileName);
-            this.dao.delete(entity.getId());
+            String storeFileName = entity.getStoreFileName();
+            if (this.ftpHandler.delete(storeFileName)) {
+                this.dao.delete(entity.getId());
+            }
 
         }
         return true;

@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface FtpRecordRepository extends BaseRepository<FtpRecordEntity> {
     //基于jpa的数据库方法，将注入到FtpRecordSpringDao中，以实现FtpSpringDao中的方法。
-    FtpRecordEntity findByDataId(String dataId);
+//    FtpRecordEntity findById(String id);//默认有 不用写
 
-    List<FtpRecordEntity> findAll();
-
-
+//    List<FtpRecordEntity> findAll();//baseRepository中有，这里不用写
 }

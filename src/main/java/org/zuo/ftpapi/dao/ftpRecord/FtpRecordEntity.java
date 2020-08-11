@@ -14,9 +14,6 @@ import java.util.Date;
 @Table(name = "ftp_form_record")
 public class FtpRecordEntity extends AbstractEntity {
 
-    @Column(name = "dataId", length = 64, nullable = false)
-    private String dataId;
-
     @Column(name = "fileName", length = 64, nullable = false)
     private String fileName;
 
@@ -26,8 +23,8 @@ public class FtpRecordEntity extends AbstractEntity {
     @Column(name = "description", length = 64, nullable = false)
     private String description;
 
-    @Column(name = "downloadCount", nullable = false)
-    private int downloadCount;
+    @Column(name = "downloadCount", length = 32, nullable = false)
+    private Integer downloadCount;
 
     @Column(name = "createTime", length = 64, nullable = false)
     private Date createTime;
